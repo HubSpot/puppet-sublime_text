@@ -18,9 +18,9 @@ class sublime_text($build = '3083') {
     require => Package['Sublime Text'],
   }
 
-  repository { "${sublime_text::config::packagedir}/Package Control":
-    ensure  => '6a8b91ca58d66cb495b383d9572bb801316bcec5',
-    source  => 'wbond/sublime_package_control',
+  file { "${sublime_text::config::installedpackagedir}/Package Control":
+    ensure  => present,
+    source  => 'https://packagecontrol.io/Package%20Control.sublime-package',
     require => Package['Sublime Text']
   }
 }
