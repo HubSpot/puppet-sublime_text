@@ -8,7 +8,7 @@ class sublime_text($build = '3083') {
 
   package { 'Sublime Text':
     provider => 'appdmg',
-    source   => "http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%20Build%20${build}.dmg";
+    source   => "http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%20Build%20${build}.dmg",
   }
 
   file { "${boxen::config::bindir}/subl":
@@ -18,10 +18,10 @@ class sublime_text($build = '3083') {
     require => Package['Sublime Text'],
   }
 
-  file { "${sublime_text::config::installedpackagedir}/Package Control":
-    ensure  => present,
-    source  => 'http://packagecontrol.io/Package%20Control.sublime-package',
-    require => Package['Sublime Text']
+  exec { "${sublime_text::config::installedpackagedir}/Package Control":
+    creates => "${sublime_text::config::installedpackagedir}/Package Control.sublime-package",
+    command => "wget -q 'http://packagecontrol.io/Package%20Control.sublime-package' -O '${sublime_text::config::installedpackagedir}/Package Control.sublime-package'",
+    require => Package['Sublime Text'],
   }
 }
 
