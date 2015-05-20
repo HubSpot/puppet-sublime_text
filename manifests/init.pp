@@ -20,7 +20,7 @@ class sublime_text($build = '3083') {
 
   file { "${sublime_text::config::installedpackagedir}/Package Control":
     ensure  => present,
-    source  => 'https://packagecontrol.io/Package%20Control.sublime-package',
+    source  => 'http://packagecontrol.io/Package%20Control.sublime-package',
     require => Package['Sublime Text']
   }
 }
