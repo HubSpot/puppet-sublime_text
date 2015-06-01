@@ -20,7 +20,7 @@ class sublime_text($build = '3083') {
 
   exec { "${sublime_text::config::installedpackagedir}/Package Control":
     creates => "${sublime_text::config::installedpackagedir}/Package Control.sublime-package",
-    command => "wget -q 'http://packagecontrol.io/Package%20Control.sublime-package' -O '${sublime_text::config::installedpackagedir}/Package Control.sublime-package'",
+    command => "curl --silent --output '${sublime_text::config::installedpackagedir}/Package Control.sublime-package' 'http://packagecontrol.io/Package%20Control.sublime-package'",
     require => Package['Sublime Text'],
   }
 }
